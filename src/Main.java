@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
 	
-	public List<Systems> deploy(List<Cluster> clusters, List<Systems> systems){
+	public List<HostSystem> deploy(List<Cluster> clusters, List<HostSystem> systems){
 		int s=0,c=0, i=0;
 		
 		for(c=0; c<clusters.size();c++) {
@@ -18,7 +18,7 @@ public class Main {
 			i=s;
 		}
 		
-		List<Systems> result = new ArrayList<Systems>();
+		List<HostSystem> result = new ArrayList<HostSystem>();
 		for(s=i; s<systems.size();s++) {
 			result.add(systems.get(s));
 		}
@@ -28,42 +28,33 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Main m = new Main();
-		List<Systems> systems = new ArrayList<Systems>();
+		List<HostSystem> systems = new ArrayList<HostSystem>();
 		
-		Systems s = new Systems("System1");
+		HostSystem s = new HostSystem("System1");
 		systems.add(s);
-		s = new Systems("Sytem2");
+		s = new HostSystem("Sytem2");
 		systems.add(s);
-		s = new Systems("Sytem3");
-		systems.add(s);
-		s = new Systems("Sytem4");
-		systems.add(s);
-		s = new Systems("Sytem5");
-		systems.add(s);
-		
-		s = new Systems("Sytem6");
-		systems.add(s);
-		s = new Systems("Sytem7");
-		systems.add(s);
-		s = new Systems("Sytem8");
-		systems.add(s);
-		s = new Systems("System9");
-		systems.add(s);
-		
-		
+		s = new HostSystem("Sytem3");
+		systems.add(s);	
 		
 		List<Cluster> clusters = new ArrayList<Cluster>();
-		Cluster cluster = new Cluster();
+		Cluster cluster = new Cluster("cluster1");
 		clusters.add(cluster);
 		
 		
 		
-		List<Systems> res = m.deploy(clusters, systems);
-		for(Systems r : res) {
+		List<HostSystem> res = m.deploy(clusters, systems);
+		
+		for(HostSystem r : res) {
 			System.out.println(r.toString());
 		}
 		
-		
+		for(Cluster c :  clusters) {
+			HostSystem system = c.systems.get(0);
+			c.remove(systems.get(0));
+			System.out.println(system.toString());
+			
+		}
 		
 	}
 
