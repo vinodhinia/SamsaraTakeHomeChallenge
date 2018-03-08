@@ -6,7 +6,6 @@ public class HostSystem extends NameValidator{
 	Cluster cluster;
 	
 	public HostSystem() {
-		
 	}
 	
 	public HostSystem(String hostName) throws Exception{

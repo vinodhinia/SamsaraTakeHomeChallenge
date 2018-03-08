@@ -4,12 +4,7 @@ public class Cluster extends NameValidator{
 	String clusterName;
 	List<HostSystem> systems;
 	
-	public Cluster() {
-		
-	}
-	
-	Cluster(ArrayList<HostSystem> systems){
-		systems = new ArrayList<HostSystem>(systems);
+	public Cluster() {	
 	}
 	
 	public Cluster(String name){
@@ -27,15 +22,16 @@ public class Cluster extends NameValidator{
 		}
 	}
 	
-	
 	public void add(HostSystem system) {
 		system.cluster.clusterName = this.clusterName;
 		systems.add(system);
 	}
 	
 	public void remove(HostSystem system) {
-		system.cluster = null;
-		systems.remove(system);
+		if(systems.contains(system)) {
+			system.cluster = null;
+			systems.remove(system);
+		}
 	}
 	
 }
